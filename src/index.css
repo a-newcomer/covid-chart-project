@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 5vh;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1,h2,h3,h4,h5 {
+  margin: 0;
+  padding: 0;
+  padding-left: 3vw;
+  padding-bottom: 1vh;
+}
+h2 {
+  /* align-self: center; */
+}
+code, p {
+  font-family: Consolas, 'Courier New',
+    monospace;
+}
+h1{
+  font-size: 3rem;
+}
+img {
+  width: 75px;
+  height: 75px;
+}
+#root {
+
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.contentHolder {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  /* justify-self: space-between;
+  align-items: stretch; */
+}
+.statePage {
+  flex: 2 1 auto;
+}
+.statePage h1 {
+  margin-left: -29vw;
+}
+.chartHolder {
+  /* width: 80vw; */
+  margin: 0 auto;
+  border: 2px #280085 solid;
+  padding: 0 1vw;
+  margin: 3vw;
+  border-radius: 10px;
+}
+nav {
+  /* width: 100%; */
+  flex: 1 1 auto;
+  margin-top: 10vh;
+}
+nav ul {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-gap: 5px;
+}
+nav ul li {
+  background-color: #cc0000;
+  padding: 5px 10px;
+  color: white;
+}
+nav ul li:nth-child(3n +2) {
+  background-color: #fff;
+  border: 2px solid #280085;
+  color: #280085 !important;
+} 
+nav ul .detailLink:nth-child(3n +2){
+color: #280085;
+}
+nav ul li:nth-child(3n +3) {
+  background-color: #280085;
+} 
+
+nav ul .detailLink {
+  /* padding: 5px 10px; */
+  text-decoration: none;
+  color: inherit;
+}
+nav ul li:hover {
+  opacity: .7;
+}
