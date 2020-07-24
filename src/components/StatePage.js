@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import {VictoryLine,
-        VictoryChart, 
+import {VictoryChart,
+        VictoryLabel,
+        VictoryLine, 
         VictoryAxis} from 'victory'
 import axios from 'axios'
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 
 import StateNames from '../states_titlecase.js'
+
 function StatePage(props) {
   const {stateParam} = useParams()
   
@@ -20,30 +22,54 @@ function StatePage(props) {
         "date": day.dateChecked,
         "hospitalizedIncrease": day.hospitalizedIncrease
       }
+      //console.log("dailyData inside:", dailyData)
       return victoryDay}
     ))
     )
     .catch(err => console.log(err))
-  },[])
+  },[stateParam])
    console.log("dailyData outside:", dailyData)
    //THIS IS THE FUNCTION I WANT TO USE TO FORMAT THE X-AXIS DATES
    const formatDate = (date) => {
+    // console.log("date indside function",date)
     let shortDate= new Date(date)
-    let month = (shortDate.getMonth())
+    let month = (shortDate.getMonth() + 1)
     let day = shortDate.getDate()
     return `${month}/${day}`
   }
  
   let foundState = StateNames.find(state =>state.abbreviation.toLowerCase() === stateParam)
+  // const findData = dailyData.find(day => day.hospitalizedIncrease > 0)
+  
+
+  function checkForData() {
+    const findData = dailyData.find(day => day.hospitalizedIncrease !== 0)
+    console.log(findData === undefined? "undefined": "object")
+    return findData === undefined && `No Data Available`
+    // if (findData === undefined) {
+    //   return `No Data Available`
+    // }else {
+    //   return("data is here")
+    // }
+  }
+  
+  console.log(foundState.name)
   
     return (
         <div className="statePage">
             <h1>for {foundState.name}</h1>
             <div className="chartHolder">
+              <h2 className="caseNoData">{checkForData()}</h2>
         <VictoryChart
         domainPadding={{ x: [30, 10], y:[0,0] }}
         scale={{ x: "time", y: 'linear'}}
         >
+          <VictoryLabel 
+          text="PEOPLE" 
+          x={30} y={30} 
+          textAnchor="middle"
+          style={{fontSize: 12}}
+          />
           <VictoryAxis
             // tickValues specifies both the number of ticks and where
             // they are placed on the axis
@@ -53,22 +79,19 @@ function StatePage(props) {
             invertAxis={true}
             label="DAYS"
             name="x-axis"
-            // scale={{ x: "time" }}
+            tickFormat={formatDate}
             style={{tickLabels: {fontSize: 8}, label: {fontSize: 8}}}
           />
           <VictoryAxis
             dependentAxis
             //offsetX={0}
             //crossAxis={false}
-            // tickFormat specifies how ticks should be displayed
-            //tickFormat={(x) => (`$${x / 1000}k`)}
-            //tickFormat={[-50, -40, -30, -20, -10, 0, 10, 20, 30, 40, 50]}
-            label="NUMBER OF PEOPLE"
+            //label="NUMBER OF PEOPLE"
             style={{tickLabels: {fontSize: 8}}}
           />
           
           <VictoryLine
-          style={{ data: { /*fill: "#c43a31",*/stroke: "#cc0000", strokeWidth: .5 } }}
+          style={{ data: { stroke: "#cc0000", strokeWidth: .5 } }}
           offsetY={0}
           data={dailyData}
           x="date"
@@ -77,6 +100,7 @@ function StatePage(props) {
           />
         </VictoryChart>
       </div>
+            <Link className="uSLink" to={`/`}>United States</Link>
         </div>
     );
 }

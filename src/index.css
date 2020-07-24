@@ -43,6 +43,8 @@ img {
   align-items: stretch; */
 }
 .statePage {
+  display: flex;
+  flex-direction: column;
   flex: 2 1 auto;
 }
 .statePage h1 {
@@ -56,6 +58,14 @@ img {
   margin: 3vw;
   border-radius: 10px;
 }
+.caseNoData {
+  padding-top: 15%;
+  position: absolute;
+  z-index: 10;
+  padding-left: 10vw;
+  font-size: calc(2rem + 2vw);
+  color: #cc0000;
+}
 nav {
   /* width: 100%; */
   flex: 1 1 auto;
@@ -67,12 +77,17 @@ nav ul {
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   grid-gap: 5px;
 }
-nav ul li {
+nav ul li, .uSLink {
   background-color: #cc0000;
   padding: 5px 10px;
   color: white;
 }
-nav ul li:nth-child(3n +2) {
+.uSLink {
+  justify-self: center;
+  align-self: center;
+  padding: 10px 15px;
+}
+nav ul li:nth-child(3n +2), .uSLink {
   background-color: #fff;
   border: 2px solid #280085;
   color: #280085 !important;
@@ -84,11 +99,73 @@ nav ul li:nth-child(3n +3) {
   background-color: #280085;
 } 
 
-nav ul .detailLink {
+nav ul .detailLink, .uSLink {
   /* padding: 5px 10px; */
   text-decoration: none;
   color: inherit;
 }
-nav ul li:hover {
+nav ul li:hover, .uSLink:hover {
   opacity: .7;
+}
+
+@media only screen and (max-width: 1200px) {
+
+  .caseNoData {
+    font-size: calc(1rem + 2vw);
+    padding-left: 15vw;
+    }
+
+}
+@media only screen and (max-width: 921px) {
+
+    .contentHolder {
+      flex-flow: column wrap;
+    }
+    .caseNoData {
+      padding-top: 20%;
+      padding-left: 15vw;
+      }
+    .statePage {
+      padding-bottom: 12vh;
+      order: 1;
+    }
+    .statePage h1 {
+      margin-left: 0;
+    }
+    nav {
+      order: 2;
+    }
+
+}
+@media only screen and (max-width: 768px) {
+    .statePage {
+      padding-bottom: 12vw;
+    }
+    .caseNoData {
+      font-size: calc(.7rem + 4vw);
+      }
+    nav {
+      margin-top: 0;
+    }
+    nav ul {
+      padding-left: 0;
+    }
+}
+@media only screen and (max-width: 550px) {
+    body {
+      padding: 2vw;
+    }
+    h1 {
+      font-size: 24px;
+    }
+    .statePage {
+      padding-bottom: 3vw;
+    }
+    nav {
+      margin-top: -2vh;
+    }
+    .caseNoData {
+      font-size: calc(.5rem + 4vw);
+      padding-top: 24%;
+      }
 }

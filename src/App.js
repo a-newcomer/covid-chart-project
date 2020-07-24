@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch, useParams} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import EntryPage from './components/EntryPage'
 import StatePage from './components/StatePage'
 import StatesMenu from './components/StatesMenu'
@@ -16,9 +16,9 @@ function App() {
         <StatesMenu />
         <Switch>
           {/* THE HOME PAGE IS COMMENTED OUT, BECAUSE IT'S THE ONE THING I CAN'T GET ROUTED CORRECTLY - IT WON'T MOVE TO AN INDIVIDUAL STATE PAGE, ALTHOUGH YOU CAN SEE THE STATE PATH IN THE URL! HOPEFULLY I'M JUST FORGETTING SOMETHING OBVIOUS HERE*/}
-          {/* <Route path="/">
-            <EntryPage />
-          </Route> */}
+          <Route exact path="/" component={EntryPage}>
+           <EntryPage />
+          </Route>
           <Route path="/individualStateDailyHosp/:stateParam">
             <StatePage />
           </Route>

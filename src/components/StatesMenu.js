@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Route, Switch, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import StateNames from '../states_titlecase.js'
 
